@@ -157,6 +157,7 @@ A comprehensive API to manage QR codes, including generating static and dynamic 
 ---
 
 ### 3. Update Dynamic QR Code
+- use the qr's ID which came at the response when you run above post endpoint "/api/qr/dynamic"
 - **URL**: `/api/qr/{id}/update`
 - **Method**: `PUT`
 - **Headers**: 
@@ -184,6 +185,7 @@ A comprehensive API to manage QR codes, including generating static and dynamic 
 ---
 
 ### 4. Track QR Code Scan
+- use the qr's ID which came at the response when you run above post endpoint "/api/qr/dynamic"
 - **URL**: `/api/qr/{id}/track`
 - **Method**: `POST`
 - **Request Body**:
@@ -216,6 +218,7 @@ A comprehensive API to manage QR codes, including generating static and dynamic 
 ---
 
 ### 5. Get QR Code Events
+- use the qr's ID which came at the response when you run above post endpoint "/api/qr/dynamic"
 - **URL**: `/api/qr/{id}/events`
 - **Method**: `GET`
 - **Headers**: 
@@ -270,6 +273,7 @@ A comprehensive API to manage QR codes, including generating static and dynamic 
 ## Analytics Endpoints
 
 ### 1. Get QR Code Analytics
+- use the qr's ID which came at the response when you run above post endpoint "/api/qr/dynamic"
 - **URL**: `/api/analytics/{id}`
 - **Method**: `GET`
 - **Headers**: 
