@@ -1,0 +1,31 @@
+{"level":"info","message":"Server is running on port 3080","timestamp":"2024-11-29T14:50:49.522Z"}
+{"ip":"::1","level":"info","message":"POST /api/auth/registre%20%20","timestamp":"2024-11-29T14:52:57.446Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"POST /api/auth/register","timestamp":"2024-11-29T14:53:18.508Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"POST /api/auth/login","timestamp":"2024-11-29T14:54:16.168Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"GET /api/auth/me","timestamp":"2024-11-29T14:54:30.286Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"POST /api/qr/static","timestamp":"2024-11-29T14:55:36.387Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"GET /png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAYAAABRRIOnAAAAAklEQVR4AewaftIAAAORSURBVO3BQY4cSQIDQWeg/v9lXx32wFMAhcxuaASaxT+Y+b/DTDnMlMNMOcyUw0w5zJTDTDnMlMNMOcyUw0w5zJTDTDnMlMNM+fBQEn6TyhNJ+IbKTRKaSkvCb1J54jBTDjPlMFM+vEzlTUl4IglN5SYJLQlvUnlTEt50mCmHmXKYKR9+WBK+ofKNJNyotCQ0labSktBU3pSEb6j8pMNMOcyUw0z58I9RuVG5ScJNEprKv+QwUw4z5TBTPvxjknCj8g2VmyQ0lf+yw0w5zJTDTPnww1R+k8pNEppKU2lJuFF5QuVvcpgph5lymCkfXpaEv0kSmkpLQlO5UWlJaCo3SfibHWbKYaYcZsqHh1T+Zio3Kj9J5b/kMFMOM+UwU+IfPJCEptKS8CaVNyWhqbwpCW9S+UmHmXKYKYeZ8uEhlZaEpnKThBuVmyQ0lZaEG5WWhKbyjSQ0lZaEpvKNJDSVNx1mymGmHGbKh4eScJOEb6i0JDSVmyQ0lSeS8A2VJ5LQVG6S0FSeOMyUw0w5zJQPP0ylJeEmCU3lGyotCTcqNyotCd9IwjdUblRaEt50mCmHmXKYKfEPXpSEb6jcJKGpPJGEG5WWhBuVloQblZaEptKS8A2VJw4z5TBTDjMl/sEDSXiTyjeS0FRaEprKm5LQVG6S0FRaEppKS0JTedNhphxmymGmfHiZypuScKPyjSTcqNwkoancJOEmCU8koak8cZgph5lymCkfflkSmsqNSkvCN1RaEprKTRJukvAmlRuVloQ3HWbKYaYcZsqHH5aEpnKThBuVloSfpHKThJ+UhKbSVN50mCmHmXKYKfEP/sOScKNyk4Q3qXwjCTcqv+kwUw4z5TBTPjyUhN+k0lSeUGlJuFFpSbhJQlO5UWlJ+IbKE4eZcpgph5ny4WUqb0rCTRJuVG6ScKPyhMo3ktBUWhKaypsOM+UwUw4z5cMPS8I3VN6UhKZyo9KS8I0kPKHSktBUWhKayhOHmXKYKYeZ8uEfo/INlRuVloSm0pJwo9KS0JJwk4SfdJgph5lymCkf/jFJeELlCZVvqLQk3Ki0JLzpMFMOM+UwUz78MJWfpPKNJDSVmyQ0lZaEG5WWhG+o/KbDTDnMlMNM+fCyJPymJNyoPKFyo9KS0JLwRBJ+02GmHGbKYabEP5j5v8NMOcyUw0w5zJTDTDnMlMNMOcyUw0w5zJTDTDnMlMNMOcyUw0z5HyNBnAAsKI6EAAAAAElFTkSuQmCC","timestamp":"2024-11-29T14:55:47.147Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"GET /favicon.ico","timestamp":"2024-11-29T14:55:48.057Z","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"}
+{"ip":"::1","level":"info","message":"POST /api/qr/dynamic","timestamp":"2024-11-29T14:56:18.222Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"PUT /api/qr/5dfdaf1b-eea3-4a51-8817-adef5cad93cf/update","timestamp":"2024-11-29T14:57:14.778Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"POST /api/qr/5dfdaf1b-eea3-4a51-8817-adef5cad93cf/track","timestamp":"2024-11-29T14:58:22.324Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"POST /api/qr/5dfdaf1b-eea3-4a51-8817-adef5cad93cf/events","timestamp":"2024-11-29T17:09:03.713Z","userAgent":"PostmanRuntime/7.42.0"}
+{"level":"info","message":"Server is running on port 3080","timestamp":"2024-11-29T17:11:09.462Z"}
+{"level":"info","message":"Server is running on port 24812","timestamp":"2024-11-29T17:17:30.542Z"}
+{"ip":"::1","level":"info","message":"POST /api/auth/register","timestamp":"2024-11-29T17:18:17.241Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"POST /api/auth/register","timestamp":"2024-11-29T17:18:29.981Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"POST /api/auth/login","timestamp":"2024-11-29T17:19:24.795Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"GET /api/auth/me","timestamp":"2024-11-29T17:19:46.148Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"POST /api/qr/static","timestamp":"2024-11-29T17:21:05.806Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"POST /api/qr/dynamic","timestamp":"2024-11-29T17:21:58.216Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"POST /api/qr/fb13b57f-2e99-4daa-9e50-15475ff35392/update","timestamp":"2024-11-29T17:22:30.733Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"POST /api/auth.me","timestamp":"2024-11-29T17:22:49.697Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"POST /api/auth/me","timestamp":"2024-11-29T17:22:54.492Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"GET /api/auth/me","timestamp":"2024-11-29T17:23:00.500Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"GET /api/qr/2f2a0853-4b9c-49a0-b9d7-9daf1acb3195/update","timestamp":"2024-11-29T17:23:21.800Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"PUT /api/qr/2f2a0853-4b9c-49a0-b9d7-9daf1acb3195/update","timestamp":"2024-11-29T17:23:27.293Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"PUT /api/qr/2f2a0853-4b9c-49a0-b9d7-9daf1acb3195/update","timestamp":"2024-11-29T17:23:47.362Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"POST /api/qr/dynamic","timestamp":"2024-11-29T17:33:06.116Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"PUT /api/qr/ba03cd7a-c3c4-49ab-bff3-639959a41656/update","timestamp":"2024-11-29T17:34:19.521Z","userAgent":"PostmanRuntime/7.42.0"}
+{"ip":"::1","level":"info","message":"POST /api/qr/ba03cd7a-c3c4-49ab-bff3-639959a41656/track","timestamp":"2024-11-29T17:35:38.254Z","userAgent":"PostmanRuntime/7.42.0"}
+{"level":"info","message":"Server is running on port 24812","timestamp":"2024-11-29T17:56:27.199Z"}
