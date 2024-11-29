@@ -1,1 +1,1 @@
-#QR Code Management Platform - API Documentation
+# QR Code Management Platform - API Documentation
