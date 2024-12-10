@@ -29,3 +29,4 @@
 {"ip":"::1","level":"info","message":"PUT /api/qr/ba03cd7a-c3c4-49ab-bff3-639959a41656/update","timestamp":"2024-11-29T17:34:19.521Z","userAgent":"PostmanRuntime/7.42.0"}
 {"ip":"::1","level":"info","message":"POST /api/qr/ba03cd7a-c3c4-49ab-bff3-639959a41656/track","timestamp":"2024-11-29T17:35:38.254Z","userAgent":"PostmanRuntime/7.42.0"}
 {"level":"info","message":"Server is running on port 24812","timestamp":"2024-11-29T17:56:27.199Z"}
+{"level":"info","message":"Server is running on port 3000","timestamp":"2024-12-10T17:11:50.706Z"}

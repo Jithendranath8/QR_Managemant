@@ -5,13 +5,13 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
-const logger = require('./utils/logger');
-const errorHandler = require('./middleware/error.middleware');
-const { NotFoundError } = require('./utils/errors');
+const logger = require('./src/utils/logger');
+const errorHandler = require('./src/middleware/error.middleware');
+const { NotFoundError } = require('./src/utils/errors');
 
-const authRoutes = require('./routes/auth.routes');
-const qrRoutes = require('./routes/qr.routes');
-const analyticsRoutes = require('./routes/analytics.routes');
+const authRoutes = require('./src/routes/auth.routes');
+const qrRoutes = require('./src/routes/qr.routes');
+const analyticsRoutes = require('./src/routes/analytics.routes');
 
 const app = express();
 const PORT = process.env.DB_PORT || 3000;
