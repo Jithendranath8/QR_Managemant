@@ -1,344 +1,247 @@
-```markdown
-# QR Code Management Platform
+---
 
-A comprehensive API to manage QR codes, including generating static and dynamic QR codes, tracking their usage, and viewing analytics. This platform is designed for users to seamlessly integrate QR code functionality into their applications.
+# **QR Code Management Platform**
+
+This project provides a platform for managing and tracking QR codes, allowing users to generate static and dynamic QR codes, update their URLs, and track events related to those codes. It also provides analytics on QR code usage, such as event counts and location-based statistics.
+
+## **Tech Stack**
+
+- **Backend**: Node.js, Express.js
+- **Database**: MySQL, Prisma ORM
+- **Authentication**: JWT, bcrypt
+- **QR Code Generation**: qrcode library
+- **Analytics**: Custom analytics services
+
+## **API Documentation**
+
+### **Authentication Routes**
+
+#### 1. **Register User**  
+- **Endpoint**: `POST /auth/register`
+- **Request**:
+  ```json
+  {
+    "name": "James",
+    "email": "james@example.com",
+    "password": "secretpassword123"
+  }
+  ```
+- **Response**:
+  - **Success** (`201 Created`):
+    ```json
+    {
+      "id": "user-id-12345",
+      "email": "james@example.com",
+      "name": "James",
+      "createdAt": "2024-11-30T12:00:00.000Z",
+      "updatedAt": "2024-11-30T12:00:00.000Z"
+    }
+    ```
+  - **Error** (`400 Bad Request`):
+    ```json
+    {
+      "error": "User Already Exists"
+    }
+    ```
+
+#### 2. **Login User**  
+- **Endpoint**: `POST /auth/login`
+- **Request**:
+  ```json
+  {
+    "email": "james@example.com",
+    "password": "secretpassword123"
+  }
+  ```
+- **Response**:
+  - **Success** (`200 OK`):
+    ```json
+    {
+      "token": "jwt-token-xyz"
+    }
+    ```
+  - **Error** (`400 Bad Request`):
+    ```json
+    {
+      "error": "Invalid email or password."
+    }
+    ```
+
+#### 3. **Get User Profile**  
+- **Endpoint**: `GET /auth/me`
+- **Headers**: `Authorization: Bearer <jwt-token>`
+- **Response**:
+  - **Success** (`200 OK`):
+    ```json
+    {
+      "id": "user-id-12345",
+      "email": "james@example.com",
+      "name": "James",
+      "createdAt": "2024-11-30T12:00:00.000Z",
+      "updatedAt": "2024-11-30T12:00:00.000Z"
+    }
+    ```
+  - **Error** (`401 Unauthorized`):
+    ```json
+    {
+      "message": "Unauthorized"
+    }
+    ```
 
 ---
 
-## Table of Contents
+### **QR Code Routes**
 
-- [Authentication Endpoints](#authentication-endpoints)
-  - [Register User](#1-register-user)
-  - [Login](#2-login)
-  - [Get Current User](#3-get-current-user)
-- [QR Code Endpoints](#qr-code-endpoints)
-  - [Generate Static QR Code](#1-generate-static-qr-code)
-  - [Generate Dynamic QR Code](#2-generate-dynamic-qr-code)
-  - [Update Dynamic QR Code](#3-update-dynamic-qr-code)
-  - [Track QR Code Scan](#4-track-qr-code-scan)
-  - [Get QR Code Events](#5-get-qr-code-events)
-  - [Get User's QR Codes](#6-get-users-qr-codes)
-- [Analytics Endpoints](#analytics-endpoints)
-  - [Get QR Code Analytics](#1-get-qr-code-analytics)
-- [Error Responses](#error-responses)
-
----
-
-## Authentication Endpoints
-
-### 1. Register User
-- **URL**: `/api/auth/register`
-- **Method**: `POST`
-- **Request Body**:
-  ```json
-  {
-    "email": "user@example.com",
-    "password": "securepassword123",
-    "name": "John Doe"
-  }
-  ```
-- **Response (200)**:
-  ```json
-  {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-  }
-  ```
-
----
-
-### 2. Login
-- **URL**: `/api/auth/login`
-- **Method**: `POST`
-- **Request Body**:
-  ```json
-  {
-    "email": "user@example.com",
-    "password": "securepassword123"
-  }
-  ```
-- **Response (200)**:
-  ```json
-  {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-  }
-  ```
-
----
-
-### 3. Get Current User
-- **URL**: `/api/auth/me`
-- **Method**: `GET`
-- **Headers**: 
-  ```
-  Authorization: Bearer <token>
-  ```
-- **Response (200)**:
-  ```json
-  {
-    "id": "user_id",
-    "email": "user@example.com",
-    "name": "John Doe",
-    "createdAt": "2023-12-20T10:00:00.000Z"
-  }
-  ```
-
----
-
-## QR Code Endpoints
-
-### 1. Generate Static QR Code
-- **URL**: `/api/qr/static`
-- **Method**: `POST`
-- **Headers**: 
-  ```
-  Authorization: Bearer <token>
-  ```
-- **Request Body**:
+#### 1. **Create Static QR Code**  
+- **Endpoint**: `POST /qr/static`
+- **Headers**: `Authorization: Bearer <jwt-token>`
+- **Request**:
   ```json
   {
     "url": "https://example.com",
-    "metadata": {
-      "name": "Product Page QR",
-      "description": "Links to main product page"
-    }
+    "metadata": { "type": "static", "description": "Static QR Code" }
   }
   ```
-- **Response (200)**:
-  ```json
-  {
-    "qrCode": {
-      "id": "qr_id",
-      "type": "STATIC",
-      "currentUrl": "https://example.com",
-      "metadata": "{\"name\":\"Product Page QR\",\"description\":\"Links to main product page\"}",
-      "userId": "user_id",
-      "createdAt": "2023-12-20T10:00:00.000Z",
-      "updatedAt": "2023-12-20T10:00:00.000Z"
-    },
-    "qrImage": "data:image/png;base64,..."
-  }
-  ```
-
----
-
-### 2. Generate Dynamic QR Code
-- **URL**: `/api/qr/dynamic`
-- **Method**: `POST`
-- **Headers**: 
-  ```
-  Authorization: Bearer <token>
-  ```
-- **Request Body**:
-  ```json
-  {
-    "url": "https://example.com/promo",
-    "metadata": {
-      "name": "Promotional QR",
-      "campaign": "Winter Sale 2023"
-    }
-  }
-  ```
-- **Response (200)**:
-  ```json
-  {
-    "qrCode": {
-      "id": "qr_id",
-      "type": "DYNAMIC",
-      "currentUrl": "https://example.com/promo",
-      "metadata": "{\"name\":\"Promotional QR\",\"campaign\":\"Winter Sale 2023\"}",
-      "userId": "user_id",
-      "createdAt": "2023-12-20T10:00:00.000Z",
-      "updatedAt": "2023-12-20T10:00:00.000Z"
-    },
-    "qrImage": "data:image/png;base64,..."
-  }
-  ```
-
----
-
-### 3. Update Dynamic QR Code
-- use the qr's ID which came at the response when you run above post endpoint "/api/qr/dynamic"
-- **URL**: `/api/qr/{id}/update`
-- **Method**: `PUT`
-- **Headers**: 
-  ```
-  Authorization: Bearer <token>
-  ```
-- **Request Body**:
-  ```json
-  {
-    "url": "https://example.com/new-promo"
-  }
-  ```
-- **Response (200)**:
-  ```json
-  {
-    "id": "qr_id",
-    "type": "DYNAMIC",
-    "currentUrl": "https://example.com/new-promo",
-    "metadata": "{\"name\":\"Promotional QR\",\"campaign\":\"Winter Sale 2023\"}",
-    "userId": "user_id",
-    "updatedAt": "2023-12-20T10:05:00.000Z"
-  }
-  ```
-
----
-
-### 4. Track QR Code Scan
-- use the qr's ID which came at the response when you run above post endpoint "/api/qr/dynamic"
-- **URL**: `/api/qr/{id}/track`
-- **Method**: `POST`
-- **Request Body**:
-  ```json
-  {
-    "location": "New York, US",
-    "device": "iPhone",
-    "browser": "Safari",
-    "ipAddress": "192.168.1.1",
-    "metadata": {
-      "referrer": "instagram",
-      "campaign": "winter_sale"
-    }
-  }
-  ```
-- **Response (200)**:
-  ```json
-  {
-    "id": "event_id",
-    "qrCodeId": "qr_id",
-    "location": "New York, US",
-    "device": "iPhone",
-    "browser": "Safari",
-    "ipAddress": "192.168.1.1",
-    "metadata": "{\"referrer\":\"instagram\",\"campaign\":\"winter_sale\"}",
-    "timestamp": "2023-12-20T10:10:00.000Z"
-  }
-  ```
-
----
-
-### 5. Get QR Code Events
-- use the qr's ID which came at the response when you run above post endpoint "/api/qr/dynamic"
-- **URL**: `/api/qr/{id}/events`
-- **Method**: `GET`
-- **Headers**: 
-  ```
-  Authorization: Bearer <token>
-  ```
-- **Response (200)**:
-  ```json
-  [
+- **Response**:
+  - **Success** (`201 Created`):
+    ```json
     {
-      "id": "event_id",
-      "qrCodeId": "qr_id",
-      "location": "New York, US",
-      "device": "iPhone",
-      "browser": "Safari",
-      "ipAddress": "192.168.1.1",
-      "metadata": "{\"referrer\":\"instagram\",\"campaign\":\"winter_sale\"}",
-      "timestamp": "2023-12-20T10:10:00.000Z"
+      "id": "qr-code-id-12345",
+      "qrImage": "data:image/png;base64,...."
     }
-  ]
-  ```
+    ```
 
----
-
-### 6. Get User's QR Codes
-- **URL**: `/api/qr/my-codes`
-- **Method**: `GET`
-- **Headers**: 
-  ```
-  Authorization: Bearer <token>
-  ```
-- **Response (200)**:
-  ```json
-  [
-    {
-      "id": "qr_id",
-      "type": "DYNAMIC",
-      "currentUrl": "https://example.com/promo",
-      "metadata": "{\"name\":\"Promotional QR\",\"campaign\":\"Winter Sale 2023\"}",
-      "userId": "user_id",
-      "createdAt": "2023-12-20T10:00:00.000Z",
-      "updatedAt": "2023-12-20T10:05:00.000Z",
-      "_count": {
-        "events": 5
-      }
-    }
-  ]
-  ```
-
----
-
-## Analytics Endpoints
-
-### 1. Get QR Code Analytics
-- use the qr's ID which came at the response when you run above post endpoint "/api/qr/dynamic"
-- **URL**: `/api/analytics/{id}`
-- **Method**: `GET`
-- **Headers**: 
-  ```
-  Authorization: Bearer <token>
-  ```
-- **Query Parameters**:
-  - `startDate`: ISO date string (optional)
-  - `endDate`: ISO date string (optional)
-- **Response (200)**:
+#### 2. **Create Dynamic QR Code**  
+- **Endpoint**: `POST /qr/dynamic`
+- **Headers**: `Authorization: Bearer <jwt-token>`
+- **Request**:
   ```json
   {
-    "totalScans": 150,
-    "uniqueUsers": 120,
-    "deviceDistribution": [
-      {
-        "device": "iPhone",
-        "_count": 80
-      },
-      {
-        "device": "Android",
-        "_count": 70
-      }
-    ],
-    "geographicDistribution": [
-      {
-        "location": "New York, US",
-        "_count": 50
-      },
-      {
-        "location": "London, UK",
-        "_count": 30
-      }
-    ],
-    "dailyTrends":
+    "url": "https://example.com",
+    "metadata": { "type": "dynamic", "description": "Dynamic QR Code" }
+  }
+  ```
+- **Response**:
+  - **Success** (`201 Created`):
+    ```json
+    {
+      "id": "qr-code-id-54321",
+      "qrImage": "data:image/png;base64,...."
+    }
+    ```
 
- [
+#### 3. **Update Dynamic QR Code**  
+- **Endpoint**: `PUT /qr/:id`
+- **Headers**: `Authorization: Bearer <jwt-token>`
+- **Request**:
+  ```json
+  {
+    "url": "https://updated-example.com"
+  }
+  ```
+- **Response**:
+  - **Success** (`200 OK`):
+    ```json
+    {
+      "message": "QR Code updated successfully."
+    }
+    ```
+
+#### 4. **Track QR Code Event**  
+- **Endpoint**: `POST /qr/:id/track`
+- **Request**:
+  ```json
+  {
+    "timestamp": "2024-11-30T12:00:00.000Z",
+    "location": { "lat": 12.34, "lng": 56.78 },
+    "deviceInfo": { "os": "iOS", "browser": "Safari" },
+    "ipAddress": "192.168.1.1",
+    "userAgent": "Mozilla/5.0"
+  }
+  ```
+- **Response**:
+  - **Success** (`200 OK`):
+    ```json
+    {
+      "message": "Event tracked successfully."
+    }
+    ```
+
+#### 5. **Get QR Code Events**  
+- **Endpoint**: `GET /qr/:id/events`
+- **Headers**: `Authorization: Bearer <jwt-token>`
+- **Response**:
+  - **Success** (`200 OK`):
+    ```json
+    [
       {
-        "date": "2023-12-15",
-        "_count": 20
-      },
-      {
-        "date": "2023-12-16",
-        "_count": 35
+        "id": "event-id-12345",
+        "timestamp": "2024-11-30T12:00:00.000Z",
+        "location": { "lat": 12.34, "lng": 56.78 },
+        "deviceInfo": { "os": "iOS", "browser": "Safari" },
+        "ipAddress": "192.168.1.1",
+        "userAgent": "Mozilla/5.0"
       }
     ]
-  }
-  ```
+    ```
 
 ---
 
-## Error Responses
+### **Analytics Routes**
 
-All error responses follow the structure:
-```json
-{
-  "error": "Error message",
-  "details": "Additional details if available"
-}
-```
-- **401 Unauthorized**: Missing or invalid token.
-- **404 Not Found**: Resource not found.
-- **400 Bad Request**: Validation or missing data issues.
+#### 1. **Get QR Code Analytics**  
+- **Endpoint**: `GET /qr/:id/analytics?from=2024-11-01&to=2024-11-30`
+- **Headers**: `Authorization: Bearer <jwt-token>`
+- **Response**:
+  - **Success** (`200 OK`):
+    ```json
+    {
+      "totalEvents": 100,
+      "eventsByLocation": {
+        "London": 50,
+        "Tokyo": 30,
+        "New York": 20
+      }
+    }
+    ```
+  - **Error** (`400 Bad Request`):
+    ```json
+    {
+      "message": "Missing 'from' or 'to' query parameters."
+    }
+    ```
+  - **Error** (`403 Forbidden`):
+    ```json
+    {
+      "error": "Unauthorized or invalid QR Code."
+    }
+    ```
 
 ---
 
-**Happy Coding! 🎉**
+## **Setting Up the Project**
+
+### 1. **Clone the Repository**
+```bash
+git clone <repo-url>
+cd <repo-folder>
 ```
+
+### 2. **Install Dependencies**
+```bash
+npm install
+```
+
+### 3. **Set up Environment Variables**
+
+Create a `.env` file and set the following environment variables:
+- `DATABASE_URL`: MySQL database connection string
+- `JWT_SECRET`: Secret key for JWT signing
+
+### 4. **Run the Application**
+```bash
+npm start
+```
+The server will run at `http://localhost:3000`.
+
+---
