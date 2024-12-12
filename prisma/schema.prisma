@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -12,40 +12,39 @@ model User {
   email     String    @unique
   password  String
   name      String
-  qrCodes   QRCode[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+  qrCodes   QRCode[]
 }
 
 model QRCode {
   id          String       @id @default(uuid())
-  type        String      // "STATIC" or "DYNAMIC"
-  currentUrl  String
-  metadata    String?     // JSON string for additional metadata
+  type        String
+  url         String
+  metadata    Json?
   userId      String
   user        User        @relation(fields: [userId], references: [id])
-  events      Event[]
-  urlHistory  UrlHistory[]
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
+  urlHistory  URLHistory[]
+  events      Event[]
+}
+
+model URLHistory {
+  id        String    @id @default(uuid())
+  qrCodeId  String
+  qrCode    QRCode    @relation(fields: [qrCodeId], references: [id])
+  url       String
+  createdAt DateTime  @default(now())
 }
 
 model Event {
-  id        String   @id @default(uuid())
-  qrCodeId  String
-  qrCode    QRCode   @relation(fields: [qrCodeId], references: [id])
-  timestamp DateTime @default(now())
-  location  String?
-  device    String?
-  browser   String?
-  ipAddress String?
-  metadata  String?  // JSON string for additional event data
-}
-
-model UrlHistory {
-  id        String   @id @default(uuid())
-  qrCodeId  String
-  qrCode    QRCode   @relation(fields: [qrCodeId], references: [id])
-  url       String
-  timestamp DateTime @default(now())
+  id          String    @id @default(uuid())
+  qrCodeId    String
+  qrCode      QRCode    @relation(fields: [qrCodeId], references: [id])
+  timestamp   DateTime  @default(now())
+  location    Json?
+  deviceInfo  Json
+  ipAddress   String
+  userAgent   String
 }
